@@ -1,0 +1,10 @@
+[paths]
+#audio_path = "data/audioCh3_short_filtered.flac"
+audio_path = "data/Bl122_piezo.flac"
+
+[parameters]
+rms_threshold = 5
+hilbert_smooth = 5
+hilbert_threshold = 10
+minimum_distance = 30
+minimum_length = 90
