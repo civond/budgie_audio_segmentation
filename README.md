@@ -1,1 +1,1 @@
-# budgie_audio_segmentation
+# Segmentation algorithm for budgie audio

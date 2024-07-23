@@ -3,23 +3,23 @@ import pandas as pd
 import toml
 from utils import *
 
+# Requires toml file
+toml_file_path = "segment_options.toml"
+with open(toml_file_path, 'r') as file:
+    toml_data = toml.load(file)
+
+# toml file definitions
+audio_path = toml_data['paths']['audio_path']
+rms_threshold = toml_data['parameters']['rms_threshold']
+hilbert_smooth = toml_data['parameters']['hilbert_smooth']
+hilbert_threshold = toml_data['parameters']['hilbert_threshold']
+minimum_distance = toml_data['parameters']['minimum_distance']
+minimum_length = toml_data['parameters']['minimum_length']
+
+audio_name = audio_path.split('.')[0]
+
+
 def main():
-    # Requires toml file
-    toml_file_path = "segment_options.toml"
-    with open(toml_file_path, 'r') as file:
-        toml_data = toml.load(file)
-
-    # toml file definitions
-    audio_path = toml_data['paths']['audio_path']
-    rms_threshold = toml_data['parameters']['rms_threshold']
-    hilbert_smooth = toml_data['parameters']['hilbert_smooth']
-    hilbert_threshold = toml_data['parameters']['hilbert_threshold']
-    minimum_distance = toml_data['parameters']['minimum_distance']
-    minimum_length = toml_data['parameters']['minimum_length']
-
-    audio_name = audio_path.split('.')[0]
-
-
     # Load audio using Librosa and scale using a 16 bit integer
     [audio, fs] = load_filter_audio(audio_path)
     audio = audio*32767
@@ -67,7 +67,7 @@ def main():
     df[2] = 1
 
     label_path = audio_name+'.txt'
-    print(f"\tWriting: {label_path} (len: {len(df)})")
+    print(f"\tWriting: {label_path} ({len(df)} detections)")
     df.to_csv(label_path, sep='\t', index=False, header=False)
 
 if __name__ == "__main__":

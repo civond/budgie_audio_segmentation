@@ -1,6 +1,5 @@
 [paths]
-#audio_path = "data/audioCh3_short_filtered.flac"
-audio_path = "data/Bl122_piezo.flac"
+audio_path = "data/audioCh3_short_filtered.flac"
 
 [parameters]
 rms_threshold = 5
