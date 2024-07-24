@@ -1,5 +1,7 @@
 [paths]
-audio_path = "data/audioCh3_short_filtered.flac"
+piezo_audio_path = "data/audioCh4_short_filtered.flac"
+amb_audio_path = "data/audioCh1_short_filtered.flac"
+label_path = "data/audioCh3_short_filtered.txt"
 
 [parameters]
 rms_threshold = 5
@@ -7,3 +9,7 @@ hilbert_smooth = 5
 hilbert_threshold = 10
 minimum_distance = 30
 minimum_length = 90
+
+[spec]
+write_img = false
+write_dir = ""

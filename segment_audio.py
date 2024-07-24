@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import toml
 from utils import *
+from spec_utils import *
 
 # Requires toml file
 toml_file_path = "segment_options.toml"
@@ -9,7 +10,7 @@ with open(toml_file_path, 'r') as file:
     toml_data = toml.load(file)
 
 # toml file definitions
-audio_path = toml_data['paths']['audio_path']
+audio_path = toml_data['paths']['piezo_audio_path']
 rms_threshold = toml_data['parameters']['rms_threshold']
 hilbert_smooth = toml_data['parameters']['hilbert_smooth']
 hilbert_threshold = toml_data['parameters']['hilbert_threshold']
@@ -65,6 +66,8 @@ def main():
     # Create dataframe
     df = pd.DataFrame(temp_labels)
     df[2] = 1
+
+    analyze_spec()
 
     label_path = audio_name+'.txt'
     print(f"\tWriting: {label_path} ({len(df)} detections)")
