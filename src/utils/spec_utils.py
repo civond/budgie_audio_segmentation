@@ -5,7 +5,7 @@ import librosa as lr
 import matplotlib.pyplot as plt
 import scipy.signal as signal
 import scipy.fftpack as fftpack
-import cv2
+#import cv2
 import os
 
 # Filter audio
@@ -67,9 +67,6 @@ def spec2dB(spec, show_img = False):
             cv2.imshow("piezo", colormap)
             
     return normalized_image, colormap, temp
-
-def analyze_spec():
-     print("help")
 
 def write_gs(write_dir, onset, mask, normalized_image1, normalized_image2, normalized_image3, normalized_image4):
     temp_write = os.path.join(write_dir, onset)

@@ -1,27 +1,33 @@
 import numpy as np
 import pandas as pd
 import toml
+import argparse
 from utils.utils import *
 from utils.spec_utils import *
 
-# Requires toml file
-toml_file_path = "segment_options.toml"
-with open(toml_file_path, 'r') as file:
-    toml_data = toml.load(file)
-
-# toml file definitions
-audio_path = toml_data['paths']['piezo_audio_path']
-rms_threshold = toml_data['parameters']['rms_threshold']
-hilbert_smooth = toml_data['parameters']['hilbert_smooth']
-hilbert_threshold = toml_data['parameters']['hilbert_threshold']
-minimum_distance = toml_data['parameters']['minimum_distance']
-minimum_length = toml_data['parameters']['minimum_length']
-
-audio_name = audio_path.split('.')[0]
-
-
 def main():
+    # Arg parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('option_file', 
+                        help='Path to the option file (.toml format)')
+    args = parser.parse_args()
+
+    with open(args.option_file, 'r') as file:
+        toml_data = toml.load(file)
+
+    # toml file definitions
+    audio_path = toml_data['paths']['piezo_audio_path']
+    rms_threshold = toml_data['parameters']['rms_threshold']
+    hilbert_smooth = toml_data['parameters']['hilbert_smooth']
+    hilbert_threshold = toml_data['parameters']['hilbert_threshold']
+    minimum_distance = toml_data['parameters']['minimum_distance']
+    minimum_length = toml_data['parameters']['minimum_length']
+
+    audio_name = audio_path.split('.')[0]
+
+
     # Load audio using Librosa and scale using a 16 bit integer
+    print(f"\tProcessing {audio_path}")
     [audio, fs] = load_filter_audio(audio_path)
     audio = audio*32767
 
@@ -67,7 +73,7 @@ def main():
     df = pd.DataFrame(temp_labels)
     df[2] = 1
 
-    analyze_spec()
+    #analyze_spec()
 
     label_path = audio_name+'.txt'
     print(f"\tWriting: {label_path} ({len(df)} detections)")
