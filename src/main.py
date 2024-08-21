@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 import toml
-from utils import *
-from spec_utils import *
+from utils.utils import *
+from utils.spec_utils import *
 
 # Requires toml file
 toml_file_path = "segment_options.toml"

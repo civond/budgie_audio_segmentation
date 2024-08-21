@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import scipy.signal as signal
 import scipy.fftpack as fftpack
 import cv2
-from spec_utils import *
+from src.utils.spec_utils import *
 import os
 import toml
 

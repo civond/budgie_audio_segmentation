@@ -1,7 +1,7 @@
 [paths]
-piezo_audio_path = "data/audioCh4_short_filtered.flac"
-amb_audio_path = "data/audioCh1_short_filtered.flac"
-label_path = "data/audioCh3_short_filtered.txt"
+piezo_audio_path = "data/NB_Ch3.flac"
+amb_audio_path = "data/Bl122_amb_short.flac"
+label_path = "data/Bl122_piezo_short.txt"
 
 [parameters]
 rms_threshold = 5
